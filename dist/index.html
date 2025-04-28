@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toDoUI</title>
+    <link rel="stylesheet" href="/toDoUI/dist/style.css">
+    <style>
+        #bar {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color:#f97316;
+            padding: 8px;
+            border-radius: 6px;
+            align-items: center;
+        }
+
+        .done {
+
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="bg-slate-400">
+    <header>
+        <nav class="mx-8 mt-5 px-8 py-5 bg-red-100 rounded-md md:flex justify-between items-center">
+            <div class="mb-3">
+                <span class="text-4xl font-bold"><a href="#">ToDooz</a></span>
+            </div>
+            <div>
+                <ul class="flex justify-end gap-4">
+                    <li><a href="" class="bg-red-600 text-white text-xl px-2 py-2 rounded-md">Log In</a></li>
+                    <li><a href="" class="bg-black text-white text-xl px-2 py-2 rounded-md">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="bg-pink-100 mx-auto mt-20 pt-20 px-52 pb-20 justify-items-center md:mx-5">
+            <section class="bg-orange-400 w-96 rounded-md md:w-full">
+                <div class="pt-11 pb-40 justify-items-center lg:flex gap-4 justify-center items-center">
+                    <div class="mb-3 md:mb-0">
+                       <form action="">
+                        <input id="taskInput" type="text" placeholder="Enter your task" class="md:w-96 py-3 px-3 rounded-md">
+                       </form>
+                    </div>
+                    <div><button id="addTaskBtn" class="bg-black text-white text-xl px-2 py-2 rounded-md" onclick="addTask()">Add task</div></button>
+                </div>
+            </section>
+
+            <section class="bg-orange-400 w-96 rounded-md mt-10 px-5 pt-5 pb-10 md:w-full">
+                <div>
+                    <div id="taskList">
+                        <span class="text-3xl font-bold text-white">Task List</span>
+                    </div>
+
+                    <div id="taskLog" class=" text-white text-2xl font-medium">
+                        <!-- This div will contain the inputed tasks by the user -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="bg-black mt-10 px-5 pt-5 pb-10 md:flex justify-between items-center">
+            <div>
+                <span class="text-5xl font-bold text-white"><a href="#">ToDooz</a></span>
+            </div>
+
+            <div>
+                <span class="text-1xl font-bold text-white"><a href="#">Home</a></span>
+            </div>
+
+            <div>
+                <span class="text-1xl font-bold text-white"><a href="#">About Us</a></span>
+            </div>
+
+            <div>
+                <span class="text-1xl font-bold text-white"><a href="#">Contact Us</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let inputForm = document.getElementById("taskInput");
+        const todos = document.getElementById("taskLog")
+
+        // inputForm.addEventListener('input', getInput);
+
+        // function getInput (e) {
+        //     console.log(inputForm.value)
+        // }
+
+      
+        inputForm.addEventListener('input', () => {
+            console.log(inputForm.value)
+        })
+
+
+         let addBtn = document.getElementById("addTaskBtn");
+        
+        function addTask() {
+            
+            let id = new Date().getTime();
+            // let id = "bar"
+            let timestamp = new Date(id).toLocaleString();
+
+            let input = document.getElementById("taskInput")
+            
+            let task = document.createElement("div");
+            task.id = "bar"
+            task.innerHTML = `<div id="addedTask"> <input type="checkbox" class="select" onclick="check(${id})" id="${id}"> <span>${input.value}</span> <div><span class="text-gray-500 text-sm"> Task added at :${timestamp}</span></div> </div> <div><button onclick="deleteTodo(${id})" class="bg-red-600 text-white text-xl px-2 py-2 rounded-md">Delete task</button></div>`
+
+            todos.appendChild(task)
+        }
+
+        //A function to mark or indicate a task as done
+
+        function check(id) {
+            let input = document.getElementById(id)
+            let item = input.nextElementSibling;
+            item.classList.toggle("done")
+        }
+
+
+        //A function to delete a task
+
+        function deleteTodo(id) {
+            let input = document.getElementById("addedTask")
+            let item = input.parentElement;
+            item.remove()
+            prompt("A task has been deleted")
+            
+        }
+
+      
+
+      
+
+    </script>
+    
+</body>
+</html>
