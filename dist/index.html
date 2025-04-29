@@ -114,9 +114,9 @@
             let task = document.createElement("div");
             task.id = "bar"
             task.innerHTML = `<div id="addedTask"> <input type="checkbox" class="select" onclick="check(${id})" id="${id}"> <span>${input.value}</span> <div><span class="text-gray-500 text-sm"> Task added at :${timestamp}</span></div> </div> <div><button onclick="deleteTodo(${id})" class="bg-red-600 text-white text-xl px-2 py-2 rounded-md">Delete task</button></div>`
-            
-            todos.appendChild(task)
             input.value = " ";
+            todos.appendChild(task)
+           
         }
 
         //A function to mark or indicate a task as done
