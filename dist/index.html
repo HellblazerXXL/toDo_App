@@ -101,6 +101,7 @@
         })
 
 
+
          let addBtn = document.getElementById("addTaskBtn");
         
         function addTask() {
@@ -138,8 +139,25 @@
             
         }
 
-      
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then((response) => response.json())
+      .then((json) => {
 
+        console.log(json)
+
+        Object.keys(json)
+
+        let cont = document.createElement("div")
+
+        cont.innerHTML = `<div>${json.id} ${json.title}</div>`;
+
+        document.getElementById("taskList").appendChild(cont)
+
+      })
+
+   
+
+    
       
 
     </script>
